@@ -2,12 +2,12 @@
 
 namespace Samehdoush\LaravelTranslationsApi\Http\Middleware;
 
-use Samehdoush\LaravelTranslationsApi\LaravelTranslations;
+use Samehdoush\LaravelTranslationsApi\LaravelTranslationsApi;
 
 class Authorize
 {
     public function handle($request, $next)
     {
-        return LaravelTranslations::check($request) ? $next($request) : abort(403);
+        return LaravelTranslationsApi::check($request) ? $next($request) : abort(403);
     }
 }
