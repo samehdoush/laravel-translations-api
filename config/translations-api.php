@@ -36,7 +36,7 @@ return [
     | doesn't conflict with the routing in your application.
     |
     */
-    'path' => env('TRANSLATIONS_PATH', 'translations'),
+    'route_prefix' => env('TRANSLATIONS_PATH', 'translations'),
 
 
 

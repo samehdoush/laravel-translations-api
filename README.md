@@ -44,7 +44,7 @@ return [
     'exclude_files' => [
         //'validation.php', // Exclude default validation for example.
     ],
-    'path' => env('TRANSLATIONS_PATH', 'translations'),
+    'route_prefix' => env('TRANSLATIONS_PATH', 'translations'),
     'middleware' => ['api'],
     'database_connection' => env('TRANSLATIONS_DB_CONNECTION', null),
 ];
