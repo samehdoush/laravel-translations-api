@@ -5,6 +5,10 @@ namespace Samehdoush\LaravelTranslationsApi;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Samehdoush\LaravelTranslationsApi\Commands\LaravelTranslationsApiCommand;
+use Samehdoush\LaravelTranslationsApi\Console\Commands\ExportTranslationsCommand;
+use Samehdoush\LaravelTranslationsApi\Console\Commands\ImportTranslationsCommand;
+use Samehdoush\LaravelTranslationsApi\Console\Commands\PublishCommand;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 
 class LaravelTranslationsApiServiceProvider extends PackageServiceProvider
 {
@@ -18,8 +22,25 @@ class LaravelTranslationsApiServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-translations-api')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-translations-api_table')
-            ->hasCommand(LaravelTranslationsApiCommand::class);
+            ->hasMigration('2023_07_15_100000_create_translations_tables')
+            ->hasRoute('api')
+            ->hasCommands([
+                ExportTranslationsCommand::class,
+                ImportTranslationsCommand::class,
+                PublishCommand::class,
+            ])->hasInstallCommand(function (InstallCommand $command) {
+                $command
+                    ->startWith(function (InstallCommand $command) {
+                        $command->info('Hello, and welcome to my great new package!');
+                    })
+                    ->publishConfigFile()
+                    ->publishMigrations()
+                    ->askToRunMigrations()
+                    ->copyAndRegisterServiceProviderInApp()
+                    ->askToStarRepoOnGitHub('samehdoush/laravel-translations-api')
+                    ->endWith(function (InstallCommand $command) {
+                        $command->info('Have a great day!');
+                    });
+            });
     }
 }

@@ -4,6 +4,10 @@
     "keywords": [
         "samehdoush",
         "laravel",
+        "localization",
+        "localization",
+        "translation-manager",
+        "translations",
         "laravel-translations-api"
     ],
     "homepage": "https://github.com/samehdoush/laravel-translations-api",
@@ -35,7 +39,8 @@
     "autoload": {
         "psr-4": {
             "Samehdoush\\LaravelTranslationsApi\\": "src/",
-            "Samehdoush\\LaravelTranslationsApi\\Database\\Factories\\": "database/factories/"
+            "Samehdoush\\LaravelTranslationsApi\\Database\\Factories\\": "database/factories/",
+            "Samehdoush\\LaravelTranslationsApi\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
