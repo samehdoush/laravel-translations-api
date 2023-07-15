@@ -5,7 +5,7 @@ use Samehdoush\LaravelTranslationsApi\Http\Controllers\TranslationController;
 
 
 Route::middleware('api')->prefix('api')->group(function () {
-    Route::controller(TranslationController::class)
+    Route::controller(TranslationController::class)->prefix('translations')
         ->as('translations.')
         ->group(function () {
             Route::get('/', 'index')->name('index');

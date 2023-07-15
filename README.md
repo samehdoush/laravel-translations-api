@@ -40,20 +40,106 @@ This is the contents of the published config file:
 
 ```php
 return [
+    'source_language' => env('TRANSLATIONS_SOURCE_LANGUAGE', 'en'), // Source Language
+    'exclude_files' => [
+        //'validation.php', // Exclude default validation for example.
+    ],
+    'path' => env('TRANSLATIONS_PATH', 'translations'),
+    'middleware' => ['api'],
+    'database_connection' => env('TRANSLATIONS_DB_CONNECTION', null),
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-translations-api-views"
 ```
 
 ## Usage
 
+## Get translations
+
 ```php
-$laravelTranslationsApi = new Samehdoush\LaravelTranslationsApi();
-echo $laravelTranslationsApi->echoPhrase('Hello, Samehdoush!');
+/api/translations GET METHOD
+return [
+    [
+            'installed' => boolean,
+            'translations' => Object,
+        ]
+]
+```
+
+## delete translation
+
+```php
+/api/translations/delete/{translation} DELETE METHOD
+
+```
+
+## get progress translation
+
+```php
+/api/translations/{translation}/progress GET METHOD
+
+return [
+    [
+            'percentage' => float,
+        ]
+```
+
+## create new Source key
+
+```php
+/api/translations/createSourceKey POST METHOD
+  Body :     [
+            'key' => 'required',
+            'file' => 'required',
+            'key_translation' => 'required',
+        ]
+
+```
+
+## create new Translation
+
+```php
+/api/translations/createTranslation POST METHOD
+  Body :     [
+            'language' => 'required|exists:ltu_languages,id',
+  ]
+
+```
+
+## GET phrases
+
+```php
+/api/translations/phrases/{translation} GET METHOD
+  RETURN :     [
+            'phrases' => Object,
+  ]
+
+```
+
+## show phrase
+
+```php
+/api/translations/phrases/{translation}/edit/{phrase:uuid} GET METHOD
+  RETURN :     [
+            'phrase' => Object,
+            'translation' => Object,
+        ]
+
+```
+
+## update phrase
+
+```php
+/api/translations/phrases/{translation}/edit/{phrase:uuid} put METHOD
+  BODY :     [
+            'value' => 'required',
+        ]
+
+```
+## DELETE phrase
+
+```php
+/api/translations/phrases/{translation}/delete/{phrase:uuid} delete METHOD
+
+
 ```
 
 ## Testing
@@ -76,8 +162,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [sameh doush](https://github.com/samehdoush)
-- [All Contributors](../../contributors)
+-   [sameh doush](https://github.com/samehdoush)
+-   [All Contributors](../../contributors)
 
 ## License
 
