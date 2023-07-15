@@ -142,11 +142,6 @@ return [
 
 ```
 
-## Testing
-
-```bash
-composer test
-```
 
 ## Changelog
 
