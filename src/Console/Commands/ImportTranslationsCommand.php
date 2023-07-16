@@ -57,10 +57,10 @@ class ImportTranslationsCommand extends Command
 
     public function createOrGetSourceLanguage(): Translation
     {
-        $language = Language::where('code', config('translations.source_language'))->first();
+        $language = Language::where('code', config('translations-api.source_language'))->first();
 
         if (!$language) {
-            $this->error('Language with code ' . config('translations.source_language') . ' not found' . PHP_EOL);
+            $this->error('Language with code ' . config('translations-api.source_language') . ' not found' . PHP_EOL);
 
             exit;
         }
@@ -110,7 +110,7 @@ class ImportTranslationsCommand extends Command
 
         $translation = Translation::firstOrCreate([
             'language_id' => $language->id,
-            'source' => config('translations.source_language') === $locale,
+            'source' => config('translations-api.source_language') === $locale,
         ]);
 
         $translationFile = TranslationFile::firstOrCreate([

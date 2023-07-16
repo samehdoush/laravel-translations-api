@@ -39,12 +39,12 @@ class TranslationsManager
     public function getTranslations(string $local): array
     {
         if (blank($local)) {
-            $local = config('translations.source_language');
+            $local = config('translations-api.source_language');
         }
 
         collect($this->filesystem->allFiles(lang_path($local)))
             ->filter(function ($file) {
-                return ! in_array($file->getFilename(), config('translations.exclude_files'));
+                return ! in_array($file->getFilename(), config('translations-api.exclude_files'));
             })
             ->filter(function ($file) {
                 return $this->filesystem->extension($file) == 'php' || $this->filesystem->extension($file) == 'json';

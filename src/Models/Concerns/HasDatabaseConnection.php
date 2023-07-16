@@ -6,7 +6,7 @@ trait HasDatabaseConnection
 {
     public function getConnectionName()
     {
-        if ($connection = config('translations.database_connection')) {
+        if ($connection = config('translations-api.database_connection')) {
             return $connection;
         }
 
