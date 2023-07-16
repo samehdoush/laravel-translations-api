@@ -20,7 +20,7 @@ class LaravelTranslationsApiServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('laravel-translations-api')
+            ->name('translations-api')
             ->hasConfigFile()
             ->hasMigration('2023_07_15_100000_create_translations_tables')
             ->hasRoute('api')
