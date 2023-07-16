@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Samehdoush\LaravelTranslationsApi\Http\Controllers\TranslationController;
 
 
-Route::middleware('api')->prefix('api/' . config('translations.route_prefix'))->group(function () {
+Route::middleware('api')->prefix('api')->group(function () {
 
     Route::controller(TranslationController::class)
         ->as('translations.')
+        ->prefix('translations')
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::delete('delete/{translation}', 'delete')->name('delete');
