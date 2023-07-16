@@ -8,7 +8,7 @@ Route::middleware('api')->prefix('api')->group(function () {
 
     Route::controller(TranslationController::class)
         ->as('translations.')
-        ->prefix('translations')
+        ->prefix(config('translations-api.route_prefix'))
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::delete('delete/{translation}', 'delete')->name('delete');
