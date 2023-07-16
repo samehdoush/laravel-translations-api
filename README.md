@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/samehdoush/laravel-translations-api/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/samehdoush/laravel-translations-api/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/samehdoush/laravel-translations-api.svg?style=flat-square)](https://packagist.org/packages/samehdoush/laravel-translations-api)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Simple and developer friendly for easy translation management and higher capabilities
 
 ## Support us
 
