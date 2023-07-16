@@ -24,7 +24,7 @@ class LaravelTranslationsApiServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasMigration('2023_07_15_100000_create_translations_tables')
             ->hasRoute('api')
-            ->hasCommands([
+            ->hasConsoleCommands([
                 ExportTranslationsCommand::class,
                 ImportTranslationsCommand::class,
                 PublishCommand::class,
