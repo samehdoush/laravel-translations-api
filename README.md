@@ -60,6 +60,25 @@ return [
 
 ## Usage
 
+To import your translations, run the following command:
+
+```bash
+php artisan translations:import
+```
+
+To import and overwrite all previous translations, use the following command:
+
+```bash
+php artisan translations:import --fresh
+```
+#### Exporting Translations
+
+To export your translations, run the following command:
+
+```bash
+php artisan translations:export
+```
+
 ## Get translations
 
 ```php
