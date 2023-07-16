@@ -17,12 +17,20 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Installation
 
+
 You can install the package via composer:
 
 ```bash
 composer require samehdoush/laravel-translations-api
 ```
 
+
+
+## Auto install
+```bash
+php artisan translations-api:install
+```
+## OR 
 You can publish and run the migrations with:
 
 ```bash
