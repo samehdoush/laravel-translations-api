@@ -53,7 +53,7 @@ return [
         //'validation.php', // Exclude default validation for example.
     ],
     'route_prefix' => env('TRANSLATIONS_PATH', 'translations'),
-    'middleware' => ['api'],
+    'middleware' => ['api','auth:sanctum'],
     'database_connection' => env('TRANSLATIONS_DB_CONNECTION', null),
 ];
 ```
