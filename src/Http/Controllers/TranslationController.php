@@ -175,13 +175,11 @@ class TranslationController extends BaseController
     {
 
         request()->validate([
-            'language' => 'required|exists:ltu_languages,id',
-
+            'language' => 'required|exists:ltu_languages,id|unique:ltu_translations,language_id',
         ]);
-        $language = Language::find(request()->language)->id;
         $translation = Translation::create([
             'source' => false,
-            'language_id' => $language,
+            'language_id' => request()->language,
         ]);
 
         $sourceTranslation = Translation::where('source', true)->first();
