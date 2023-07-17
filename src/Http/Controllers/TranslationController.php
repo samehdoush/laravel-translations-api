@@ -32,6 +32,15 @@ class TranslationController extends BaseController
                     });
                 });
             })
+            // with get Translation Progress Percentage
+            ->withCount(['phrases as translated' => function ($query) {
+                $query->whereNotNull('value');
+            }])
+            ->withCount(['phrases as untranslated' => function ($query) {
+                $query->whereNull('value');
+            }])
+            ->withCount('phrases')
+
             ->with('language')->paginate(12)->onEachSide(0);
     }
     public function getTranslationProgressPercentage(Translation $translation): JsonResponse
