@@ -33,7 +33,7 @@ class TranslationLoaderManager extends FileLoader
 
             return array_replace_recursive($fileTranslations, $loaderTranslations);
         } catch (QueryException $e) {
-            $modelClass = Phrase::class;
+            $modelClass = config('translations-api.model');
             $model = new $modelClass;
             if (is_a($model, Phrase::class)) {
                 if (!Schema::hasTable($model->getTable())) {
@@ -50,7 +50,7 @@ class TranslationLoaderManager extends FileLoader
         string $group,
         string $namespace = null
     ): array {
-        return collect(Db::class)
+        return collect(config('translations-api.translation_loaders'))
             ->map(function (string $className) {
                 return app($className);
             })

@@ -47,7 +47,7 @@ class LaravelTranslationsApiServiceProvider extends PackageServiceProvider
     public function registeringPackage()
     {
         $this->app->singleton('translation.loader', function ($app) {
-            $class = TranslationLoaderManager::class;
+            $class = config('translations-api.translation_manager');
 
             return new $class($app['files'], $app['path.lang']);
         });

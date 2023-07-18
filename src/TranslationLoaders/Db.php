@@ -10,8 +10,8 @@ class Db implements TranslationLoader
     public function loadTranslations(string $locale, string $group): array
     {
 
-
-        return Phrase::getTranslationsForGroup($locale, $group);
+        $model = config('translations-api.model');
+        return $model::getTranslationsForGroup($locale, $group);
     }
 
 

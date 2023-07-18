@@ -1,6 +1,5 @@
 <?php
 
-// config for Samehdoush/LaravelTranslationsApi
 return [
     /*
     |--------------------------------------------------------------------------
@@ -14,6 +13,25 @@ return [
     */
     'source_language' => env('TRANSLATIONS_SOURCE_LANGUAGE', 'en'),
 
+
+
+    /*
+     * Language lines will be fetched by these loaders. You can put any class here that implements
+     * the Samehdoush\LaravelTranslationsApi\TranslationLoaders\TranslationLoader-interface.
+     */
+    'translation_loaders' => [
+        Samehdoush\LaravelTranslationsApi\TranslationLoaders\Db::class,
+    ],
+    /*
+     * This is the model used by the Db Translation loader. You can put any model here
+     * that extends  Samehdoush\LaravelTranslationsApi\Models\Phrase.
+     */
+    'model' => Samehdoush\LaravelTranslationsApi\Models\Phrase::class,
+
+    /*
+     * This is the translation manager which overrides the default Laravel `translation.loader`
+     */
+    'translation_manager' => Samehdoush\LaravelTranslationsApi\TranslationLoaderManager::class,
     /*
     |--------------------------------------------------------------------------
     | Exclude Files
