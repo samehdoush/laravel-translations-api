@@ -120,7 +120,7 @@ class TranslationController extends BaseController
             'translation' => $translation,
         ]);
     }
-    public function updatePhrase(Phrase $phrase): JsonResponse
+    public function updatePhrase(Translation $translation, Phrase $phrase): JsonResponse
     {
         // validate  value is required
         request()->validate([
