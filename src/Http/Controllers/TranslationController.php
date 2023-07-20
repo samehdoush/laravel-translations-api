@@ -156,9 +156,10 @@ class TranslationController extends BaseController
                 continue;
             }
 
-            $phrase = Phrase::where('uuid', $phrase['uuid'])->first();
 
-            $phrase->update([
+            $phraseNew = Phrase::where('uuid', $phrase['uuid'])->first();
+           
+            $phraseNew->update([
                 'value' => $phrase['value'],
             ]);
         }
