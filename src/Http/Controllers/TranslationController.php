@@ -149,10 +149,11 @@ class TranslationController extends BaseController
         // validate  value is required
         request()->validate([
             'phrases.*.uuid' => 'required|exists:ltu_phrases,uuid',
-            'phrases.*.value' => 'required',
         ]);
 
         foreach (request()->phrases as $phrase) {
+            if ($phrase['value'] == null)
+                continue;
             $phrase = Phrase::where('uuid', $phrase['uuid'])->first();
 
             $phrase->update([
