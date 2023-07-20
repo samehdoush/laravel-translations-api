@@ -136,8 +136,10 @@ class ImportTranslationsCommand extends Command
     protected function importLanguages(): void
     {
         if (!Schema::hasTable('ltu_languages') || Language::count() === 0) {
+            // if force is true or if the user confirms the question
+
             if ($this->option('force') || $this->confirm('The ltu_languages table does not exist or is empty, would you like to install the default languages?', true)) {
-                $this->callSilent('db:seed', ['--class' => LanguagesTableSeeder::class]);
+                $this->callSilent('db:seed', ['--class' => LanguagesTableSeeder::class, '--force' => true]);
             } else {
                 $this->error('The ltu_languages table does not exist or is empty, please run the translations:install command first.');
 
