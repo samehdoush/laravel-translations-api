@@ -26,6 +26,8 @@ Route::middleware('api')->prefix('api')->group(function () {
                     Route::get('{translation}/edit/{phrase:uuid}', 'phrase')->name('show');
                     Route::put('{translation}/edit/{phrase:uuid}', 'updatePhrase')->name('update');
                     Route::delete('{translation}/delete/{phrase:uuid}', 'deletePhrase')->name('delete');
+                    // updateMultiPhrase
+                    Route::put('{translation}/updateMultiPhrase', 'updateMultiPhrase')->name('updateMultiPhrase');
                 });
         });
 });

@@ -144,6 +144,28 @@ class TranslationController extends BaseController
             'message' => 'Phrase updated successfully!',
         ]);
     }
+    public function updateMultiPhrase(Translation $translation): JsonResponse
+    {
+        // validate  value is required
+        request()->validate([
+            'phrases.*.uuid' => 'required|exists:ltu_phrases,uuid',
+            'phrases.*.value' => 'required',
+        ]);
+
+        foreach (request()->phrases as $phrase) {
+            $phrase = Phrase::where('uuid', $phrase['uuid'])->first();
+
+            $phrase->update([
+                'value' => $phrase['value'],
+            ]);
+        }
+
+
+
+        return response()->json([
+            'message' => 'Phrase updated successfully!',
+        ]);
+    }
 
     // CreateSourceKey
     public function createSourceKey(): JsonResponse
