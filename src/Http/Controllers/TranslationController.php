@@ -18,7 +18,7 @@ class TranslationController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware(Authorize::class);
+        // $this->middleware(Authorize::class);
     }
     public function getTranslations(): LengthAwarePaginator
     {
