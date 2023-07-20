@@ -152,8 +152,10 @@ class TranslationController extends BaseController
         ]);
 
         foreach (request()->phrases as $phrase) {
-            if ($phrase['value'] == null)
+            if (empty($phrase['value'])) {
                 continue;
+            }
+
             $phrase = Phrase::where('uuid', $phrase['uuid'])->first();
 
             $phrase->update([
