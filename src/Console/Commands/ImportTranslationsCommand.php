@@ -16,7 +16,7 @@ class ImportTranslationsCommand extends Command
 {
     public TranslationsManager $manager;
 
-    protected $signature = 'translations:import {--F|fresh : Truncate all translations and phrases before importing}';
+    protected $signature = 'translations:import {--F|fresh : Truncate all translations and phrases before importing} {--force : Force the operation to run when in production}';
 
     protected $description = 'Sync translation all keys from the translation files to the database';
 
@@ -40,7 +40,11 @@ class ImportTranslationsCommand extends Command
     {
         $this->importLanguages();
 
-        if ($this->option('fresh') && $this->confirm('Are you sure you want to truncate all translations and phrases?')) {
+        if ($this->option('force') && $this->option('fresh')) {
+            $this->info('Truncating translations and phrases...' . PHP_EOL);
+
+            $this->truncateTables();
+        } elseif ($this->option('fresh') && $this->confirm('Are you sure you want to truncate all translations and phrases?')) {
             $this->info('Truncating translations and phrases...' . PHP_EOL);
 
             $this->truncateTables();
@@ -132,7 +136,7 @@ class ImportTranslationsCommand extends Command
     protected function importLanguages(): void
     {
         if (!Schema::hasTable('ltu_languages') || Language::count() === 0) {
-            if ($this->confirm('The ltu_languages table does not exist or is empty, would you like to install the default languages?', true)) {
+            if ($this->option('force') || $this->confirm('The ltu_languages table does not exist or is empty, would you like to install the default languages?', true)) {
                 $this->callSilent('db:seed', ['--class' => LanguagesTableSeeder::class]);
             } else {
                 $this->error('The ltu_languages table does not exist or is empty, please run the translations:install command first.');
