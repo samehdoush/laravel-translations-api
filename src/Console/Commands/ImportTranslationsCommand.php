@@ -122,15 +122,20 @@ class ImportTranslationsCommand extends Command
             'extension' => pathinfo($file, PATHINFO_EXTENSION),
         ]);
 
-        $translation->phrases()->updateOrCreate([
-            'key' => $key,
-            'group' => $translationFile->name,
-            'translation_file_id' => $translationFile->id,
-        ], [
-            'value' => $value,
-            'parameters' => $this->manager->getPhraseParameters($value),
-            'phrase_id' => $translation->source ? null : $source->phrases()->where('key', $key)->first()?->id,
-        ]);
+        $exists = $translation->phrases()->where('key', $key)->where('group', $translationFile->name)->where('translation_file_id', $translationFile->id)->exists();
+        if (!$exists) {
+            // $translation->phrases()->updateOrCreate([
+            $translation->phrases()->create([
+                'key' => $key,
+                'group' => $translationFile->name,
+                'translation_file_id' => $translationFile->id,
+                'value' => $value,
+                'parameters' => $this->manager->getPhraseParameters($value),
+                'phrase_id' => $translation->source ? null : $source->phrases()->where('key', $key)->first()?->id,
+            ]);
+
+            // $this->info('Phrase already exists: ' . $key . PHP_EOL);
+        }
     }
 
     protected function importLanguages(): void
