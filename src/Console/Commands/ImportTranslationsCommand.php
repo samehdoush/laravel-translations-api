@@ -123,7 +123,7 @@ class ImportTranslationsCommand extends Command
         ]);
 
         $exists = $translation->phrases()->where('key', $key)->where('group', $translationFile->name)->where('translation_file_id', $translationFile->id)->exists();
-        $this->info('Phrase already exists: ' . $key . ' ' .  $exists . PHP_EOL);
+        // $this->info('Phrase already exists: ' . $key . ' ' .  $exists . PHP_EOL);
         if (!$exists) {
             // $translation->phrases()->updateOrCreate([
             $translation->phrases()->create([
