@@ -108,9 +108,9 @@ class ImportTranslationsCommand extends Command
 
         if (!$language) {
             $this->error(PHP_EOL . "Language with code $locale not found");
-
             exit;
         }
+
 
         $translation = Translation::firstOrCreate([
             'language_id' => $language->id,
@@ -123,6 +123,7 @@ class ImportTranslationsCommand extends Command
         ]);
 
         $exists = $translation->phrases()->where('key', $key)->where('group', $translationFile->name)->where('translation_file_id', $translationFile->id)->exists();
+        $this->info('Phrase already exists: ' . $key . ' ' .  $exists . PHP_EOL);
         if (!$exists) {
             // $translation->phrases()->updateOrCreate([
             $translation->phrases()->create([
