@@ -15,9 +15,9 @@ Route::middleware('api')->prefix('api')->group(function () {
             Route::delete('delete/{translation}', 'delete')->name('delete');
             Route::get('{translation}/progress', 'getTranslationProgressPercentage')->name('progress');
             // createSourceKey
-            Route::post('createSourceKey', 'createSourceKey')->name('create');
+            Route::post('createSourceKey', 'createSourceKey')->name('createSourceKey');
             // createTranslation
-            Route::post('createTranslation', 'createTranslation')->name('create');
+            Route::post('createTranslation', 'createTranslation')->name('createTranslation');
 
             Route::prefix('phrases')
                 ->as('phrases.')
