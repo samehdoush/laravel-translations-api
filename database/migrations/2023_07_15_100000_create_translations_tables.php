@@ -23,25 +23,25 @@ return new class extends Migration
         Schema::create('ltu_translations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('language_id')->constrained('ltu_languages')->cascadeOnDelete();
-            $table->boolean('source')->default(false);
+            $table->boolean('source')->index()->default(false);
             $table->timestamps();
         });
 
         Schema::create('ltu_translation_files', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->index();
             $table->string('extension');
         });
 
         Schema::create('ltu_phrases', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
+            $table->uuid('uuid')->index();
             $table->foreignId('translation_id')->constrained('ltu_translations')->cascadeOnDelete();
             $table->foreignId('translation_file_id')->constrained('ltu_translation_files')->cascadeOnDelete();
             $table->foreignId('phrase_id')->nullable()->constrained('ltu_phrases')->cascadeOnDelete();
-            $table->text('key');
-            $table->text('group');
-            $table->text('value')->nullable();
+            $table->text('key')->fulltext();
+            $table->text('group')->fulltext();
+            $table->text('value')->fulltext()->nullable();
             $table->json('parameters')->nullable();
             $table->timestamps();
         });
