@@ -145,7 +145,7 @@ class ImportTranslationsCommand extends Command
             // if force is true or if the user confirms the question
 
             if ($this->option('force') || $this->confirm('The ltu_languages table does not exist or is empty, would you like to install the default languages?', true)) {
-                // $this->call('db:seed', ['--class' => LanguagesTableSeeder::class, '--force' => true]);
+                $this->call('db:seed', ['--class' => LanguagesTableSeeder::class, '--force' => true]);
             } else {
                 $this->error('The ltu_languages table does not exist or is empty, please run the translations:install command first.');
 
